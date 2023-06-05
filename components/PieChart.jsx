@@ -16,8 +16,11 @@ export default function PieChart({
   getColor,
   animate = true,
   onItemSelect,
+  defaultSelectedElement = null,
 }) {
-  const [selectedElement, setSelectedElement] = useState(null);
+  const [selectedElement, setSelectedElement] = useState(
+    defaultSelectedElement
+  );
 
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;

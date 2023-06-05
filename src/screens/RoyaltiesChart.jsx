@@ -87,6 +87,18 @@ function RoyaltiesChart() {
           data={data}
           onItemSelect={(item) => {
             setSelectedElement(item);
+            // send message to react native webview
+            window.ReactNativeWebView.postMessage(
+              JSON.stringify({
+                label: item.label,
+                percentage: item.value,
+                earnings: Number(earnings[item.label]).toFixed(2),
+                earningsFormatted: currencyFormatter.format(
+                  earnings[item.label]
+                ),
+                type: 'pieSliceSelected',
+              })
+            );
           }}
           itemIdentifierKey={itemIdentifierKey}
           itemValueKey={itemValueKey}
