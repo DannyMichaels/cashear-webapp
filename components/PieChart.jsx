@@ -132,14 +132,6 @@ function AnimatedPie({
       selectedElement &&
       selectedElement[itemIdentifierKey] === getKey({ data: arc.data });
 
-    const sliceSizeMultiplier = isSelected ? 1.2 : 1.0; // Increase the size of the selected slice
-    const sliceElevation = isSelected ? 8 : 0; // Add elevation to the selected slice
-
-    const scales = {
-      selected: 1.2,
-      default: 1.0,
-    };
-
     return (
       <g key={key} is="x3d">
         <animated.path
@@ -160,12 +152,6 @@ function AnimatedPie({
           onClick={() => onClickDatum(arc)}
           onTouchStart={() => onClickDatum(arc)}
           class={`slice${isSelected ? '--selected' : ''}`}
-          // style={{
-
-          //   // transform: `scale(${sliceSizeMultiplier}) translateZ(${sliceElevation}px)`,
-          //   // transition: 'transform 0.2s ease-in-out',
-          //   animation: '$pulse 250ms ease-in-out infinite',
-          // }}
         />
         {/* <>
           {hasSpaceForLabel && (
