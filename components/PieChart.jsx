@@ -111,8 +111,6 @@ function AnimatedPie({
     return {
       startAngle,
       endAngle,
-      startAngle,
-      endAngle,
       opacity: 1,
     };
   };
