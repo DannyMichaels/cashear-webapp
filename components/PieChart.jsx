@@ -23,7 +23,7 @@ export default function PieChart({
   const radius = Math.min(innerWidth, innerHeight) / 2;
   const centerY = innerHeight / 2;
   const centerX = innerWidth / 2;
-  const innerRadius = 70;
+  const innerRadius = 80;
 
   // display the selected element's label and value in the center of the pie
   const selectedElementLabel =
@@ -32,7 +32,7 @@ export default function PieChart({
   const selectedElementJSX = (
     <text
       style={{
-        fontSize: '1.5em',
+        fontSize: '1.35em',
       }}
       is="x3d"
       fill="white"
