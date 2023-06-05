@@ -104,9 +104,9 @@ function RoyaltiesChart() {
           itemIdentifierKey={itemIdentifierKey}
           itemValueKey={itemValueKey}
         />
-        {selectedElement && (
+        {/* {selectedElement && (
           <h1>{currencyFormatter.format(earnings[selectedElement.label])}</h1>
-        )}
+        )} */}
       </>
     </main>
   );
