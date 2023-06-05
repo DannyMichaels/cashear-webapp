@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PieChart from '../../components/PieChart';
 import { scaleOrdinal } from '@visx/scale';
-
-const useQuery = () => new URLSearchParams(window.location.search);
+import { currencyFormatter } from '../../utils/currency';
+import { useQuery } from '../../hooks/useQuery.hook';
 
 function RoyaltiesChart() {
+  const [selectedElement, setSelectedElement] = useState(null);
+
   const defaultQuery = {
     appleMusic: '2000',
     youtube: '1500',
@@ -75,6 +77,7 @@ function RoyaltiesChart() {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        flexDirection: 'column',
       }}>
       <>
         <PieChart
@@ -82,9 +85,15 @@ function RoyaltiesChart() {
           width={500}
           height={500}
           data={data}
+          onItemSelect={(item) => {
+            setSelectedElement(item);
+          }}
           itemIdentifierKey={itemIdentifierKey}
           itemValueKey={itemValueKey}
         />
+        {selectedElement && (
+          <h1>{currencyFormatter.format(earnings[selectedElement.label])}</h1>
+        )}
       </>
     </main>
   );

@@ -15,6 +15,7 @@ export default function PieChart({
   margin = defaultMargin,
   getColor,
   animate = true,
+  onItemSelect,
 }) {
   const [selectedElement, setSelectedElement] = useState(null);
 
@@ -64,6 +65,7 @@ export default function PieChart({
               selectedElement={selectedElement}
               itemIdentifierKey={itemIdentifierKey}
               onClickDatum={(arc) => {
+                onItemSelect(arc.data);
                 setSelectedElement(arc.data);
               }}
               getColor={getColor}
@@ -97,18 +99,18 @@ function AnimatedPie({
       outerRadius: radius - donutThickness * 1.3, // Default outer radius
     };
   };
+
   const enterUpdateTransition = ({ startAngle, endAngle, data }) => {
-    const isSelected =
-      selectedElement &&
-      selectedElement[itemIdentifierKey] === getKey({ data });
+    // const isSelected =
+    //   selectedElement &&
+    //   selectedElement[itemIdentifierKey] === getKey({ data });
 
     // const padAngle = isSelected ? 0.1 : 0.02; // Reduce the pad angle for the selected slice
     // const angleOffset = isSelected ? 0.1 : 0.0; // Increase the angle offset for a larger selected slice
 
     return {
-      // padAngle,
-      // startAngle: startAngle - angleOffset,
-      // endAngle: endAngle + angleOffset,
+      startAngle,
+      endAngle,
       startAngle,
       endAngle,
       opacity: 1,
@@ -124,9 +126,6 @@ function AnimatedPie({
   });
 
   return transitions((props, arc, { key }) => {
-    // const [centroidX, centroidY] = path.centroid(arc);
-    // const hasSpaceForLabel = arc.endAngle - arc.startAngle >= 0.1;
-
     const isSelected =
       selectedElement &&
       selectedElement[itemIdentifierKey] === getKey({ data: arc.data });
@@ -155,7 +154,6 @@ function AnimatedPie({
           onTouchStart={() => onClickDatum(arc)}
           style={{
             transform: `scale(${sliceSizeMultiplier}) translateZ(${sliceElevation}px)`,
-
             transition: 'transform 0.2s ease-in-out',
           }}
         />
@@ -176,8 +174,6 @@ function AnimatedPie({
             </animated.g>
           )}
         </> */}
-
-        <></>
       </g>
     );
   });
