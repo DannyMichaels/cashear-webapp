@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import PieChart from '../../components/PieChart';
+import PieChart from '../../../components/PieChart';
 import { scaleOrdinal } from '@visx/scale';
-import { currencyFormatter } from '../../utils/currency';
-import { useQuery } from '../../hooks/useQuery.hook';
+import { currencyFormatter } from '../../../utils/currency';
+import { useQuery } from '../../../hooks/useQuery.hook';
+import './RoyaltiesChart.css';
 
 function RoyaltiesChart() {
   const [selectedElement, setSelectedElement] = useState(null);
@@ -88,7 +89,7 @@ function RoyaltiesChart() {
           onItemSelect={(item) => {
             setSelectedElement(item);
             // send message to react native webview
-            window.ReactNativeWebView.postMessage(
+            window.ReactNativeWebView?.postMessage(
               JSON.stringify({
                 label: item.label,
                 percentage: item.value,
