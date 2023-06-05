@@ -72,42 +72,31 @@ function RoyaltiesChart() {
   };
 
   return (
-    <main
-      style={{
-        minHeight: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-      }}>
-      <>
-        <PieChart
-          getColor={getColor}
-          width={500}
-          height={500}
-          data={data}
-          onItemSelect={(item) => {
-            setSelectedElement(item);
-            // send message to react native webview
-            window.ReactNativeWebView?.postMessage(
-              JSON.stringify({
-                label: item.label,
-                percentage: item.value,
-                earnings: Number(earnings[item.label]).toFixed(2),
-                earningsFormatted: currencyFormatter.format(
-                  earnings[item.label]
-                ),
-                type: 'pieSliceSelected',
-              })
-            );
-          }}
-          itemIdentifierKey={itemIdentifierKey}
-          itemValueKey={itemValueKey}
-        />
-        {/* {selectedElement && (
+    <main class="chart__container">
+      <PieChart
+        getColor={getColor}
+        width={500}
+        height={500}
+        data={data}
+        onItemSelect={(item) => {
+          setSelectedElement(item);
+          // send message to react native webview
+          window.ReactNativeWebView?.postMessage(
+            JSON.stringify({
+              label: item.label,
+              percentage: item.value,
+              earnings: Number(earnings[item.label]).toFixed(2),
+              earningsFormatted: currencyFormatter.format(earnings[item.label]),
+              type: 'pieSliceSelected',
+            })
+          );
+        }}
+        itemIdentifierKey={itemIdentifierKey}
+        itemValueKey={itemValueKey}
+      />
+      {/* {selectedElement && (
           <h1>{currencyFormatter.format(earnings[selectedElement.label])}</h1>
         )} */}
-      </>
     </main>
   );
 }

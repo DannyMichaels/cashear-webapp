@@ -1,0 +1,29 @@
+:root {
+  --sliceSizeMultiplier: 1.2;
+  --sliceElevation: 8px;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1) translateZ(0px);
+  }
+  50% {
+    transform: scale(var(--sliceSizeMultiplier))
+      translateZ(var(--sliceElevation));
+  }
+  100% {
+    transform: scale(1) translateZ(0px);
+  }
+}
+
+.slice {
+  background: yellow;
+  height: 1000px;
+}
+
+.slice--selected {
+  animation: pulse 1s ease-in-out;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+  animation-direction: alternate;
+}
