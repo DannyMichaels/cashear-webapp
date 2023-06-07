@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import PieChart from '../../../components/PieChart';
+import PieChart from '@/components/PieChart';
 import { scaleOrdinal } from '@visx/scale';
-import { currencyFormatter } from '../../../utils/currency';
-import { useQuery } from '../../../hooks/useQuery.hook';
+import { currencyFormatter } from '@/utils/currency';
+import { useQuery } from '@/hooks/useQuery.hook';
 import './RoyaltiesChart.css';
 
 function RoyaltiesChart() {
